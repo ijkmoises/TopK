@@ -8,6 +8,7 @@ import br.com.emesistemas.topk.data.remote.AppHttp
 import br.com.emesistemas.topk.data.remote.GithubApi
 import br.com.emesistemas.topk.data.remote.ResponseHandler
 import br.com.emesistemas.topk.presentation.RepoListViewModel
+import br.com.emesistemas.topk.presentation.UiStateViewModel
 import br.com.emesistemas.topk.ui.adapters.RepoListAdapter
 import br.com.emesistemas.topk.ui.fragments.RepoDetailFragment
 import br.com.emesistemas.topk.ui.fragments.RepoListFragment
@@ -52,6 +53,10 @@ val repositoryModule = module {
 val viewModelModule = module {
     viewModel<RepoListViewModel> {
         RepoListViewModel(get())
+    }
+
+    viewModel<UiStateViewModel>{
+        UiStateViewModel()
     }
 }
 

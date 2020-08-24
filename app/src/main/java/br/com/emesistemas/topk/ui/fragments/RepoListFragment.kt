@@ -1,8 +1,6 @@
 package br.com.emesistemas.topk.ui.fragments
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,19 +14,22 @@ import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.data.remote.Status
 import br.com.emesistemas.topk.model.Item
 import br.com.emesistemas.topk.presentation.RepoListViewModel
+import br.com.emesistemas.topk.presentation.UiComponent
+import br.com.emesistemas.topk.presentation.UiStateViewModel
 import br.com.emesistemas.topk.ui.adapters.RepoListAdapter
 import br.com.emesistemas.topk.ui.custom.CustomDividerItemDecoration
 import br.com.emesistemas.topk.ui.custom.PaginationListener
 import kotlinx.android.synthetic.main.fragment_repo_list.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepoListFragment : Fragment() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
 
+    private val uiStateViewModel: UiStateViewModel by sharedViewModel()
     private val viewModel by viewModel<RepoListViewModel>()
-
     private val adapter: RepoListAdapter by inject()
 
     private val navController by lazy {
@@ -55,6 +56,10 @@ class RepoListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        uiStateViewModel.hasComponent = UiComponent(
+            homeAsUpButton = false,
+            titleToolbar = true
+        )
         configureRecyclerView()
         configureRecyclerViewPagingListener()
     }
@@ -115,8 +120,10 @@ class RepoListFragment : Fragment() {
 
     private fun showError(message: Int?) {
         message?.let {
-            Toast.makeText(context, getString(message),
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context, getString(message),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

@@ -10,16 +10,21 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.extension.getddMMyy
+import br.com.emesistemas.topk.presentation.UiComponent
+import br.com.emesistemas.topk.presentation.UiStateViewModel
 import br.com.emesistemas.topk.ui.custom.ImageLoader
 import kotlinx.android.synthetic.main.fragment_repo_detail.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class RepoDetailFragment : Fragment() {
 
+    private val uiStateViewModel: UiStateViewModel by sharedViewModel()
     private val args by navArgs<RepoDetailFragmentArgs>()
 
     private val repoItem by lazy {
         args.repoItem
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +40,12 @@ class RepoDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        uiStateViewModel.hasComponent = UiComponent(
+            homeAsUpButton = true,
+            titleToolbar = false
+        )
+
         ImageLoader.download(context,repoItem.owner.avatar_url,ivAvatar)
         tvAutor.text = repoItem.owner.login
         tvRepo.text = repoItem.name

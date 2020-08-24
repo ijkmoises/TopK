@@ -165,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toStartOf="@+id/cardPlansContainer"
             app:layout_constraintTop_toBottomOf="@+id/cardPlansContainer"
             tools:text="@sample/repos.json/repos/created" />
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toStartOf="@+id/tvCreated"
             app:layout_constraintTop_toBottomOf="@+id/tvCreated"
             tools:text="@sample/repos.json/repos/updated" />

@@ -7,7 +7,6 @@ import br.com.emesistemas.topk.data.local.RepoRepository
 import br.com.emesistemas.topk.data.remote.Resource
 import br.com.emesistemas.topk.model.Repo
 import kotlinx.coroutines.Dispatchers
-import java.math.BigDecimal
 
 class RepoListViewModel(private val repository: RepoRepository) : ViewModel() {
 

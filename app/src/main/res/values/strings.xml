@@ -12,9 +12,10 @@
     <string name="btOpenBrowser">VER NA WEB</string>
     <string name="createdAt">Criado em %1$s</string>
     <string name="updatedAt">Atualizado em %1$s</string>
-    <string name="cd_imageBack">Imgem de fundo</string>
+    <string name="cd_imageBack">Imagem de fundo</string>
     <string name="cd_autorAvatar">Foto do autor</string>
     <string name="cd_imageStars">Estrelas</string>
     <string name="cd_forks">Forks</string>
     <string name="cd_issues">Issues</string>
+    <string name="label_repolist_fragment">Repositórios Kotlin</string>
 </resources>
