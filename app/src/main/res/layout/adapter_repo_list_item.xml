@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+
+        android:contentDescription="@string/cd_autorAvatar"
+        android:scaleType="centerCrop"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_overlay="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@sample/repos.json/repos/avatar" />
+
+    <TextView
+        android:id="@+id/tvAutor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorBlueTextGithub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@sample/repos.json/repos/autor" />
+
+    <TextView
+        android:id="@+id/tvRepoName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="@+id/tvAutor"
+        app:layout_constraintStart_toStartOf="@+id/tvAutor"
+        app:layout_constraintTop_toBottomOf="@+id/tvAutor"
+        tools:text="@sample/repos.json/repos/repo_name" />
+
+    <ImageView
+        android:id="@+id/ivStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/cd_imageStars"
+        android:src="@drawable/star_outline"
+        app:layout_constraintStart_toStartOf="@+id/tvRepoName"
+        app:layout_constraintTop_toBottomOf="@+id/tvRepoName" />
+
+    <TextView
+        android:id="@+id/tvStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/ivStar"
+        app:layout_constraintStart_toEndOf="@+id/ivStar"
+        app:layout_constraintTop_toBottomOf="@+id/tvRepoName"
+        app:layout_constraintVertical_bias="0.615"
+        tools:text="@sample/repos.json/repos/stars" />
+
+    <ImageView
+        android:id="@+id/ivFork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/cd_forks"
+        android:src="@drawable/source_fork"
+        app:layout_constraintStart_toEndOf="@+id/tvStars"
+        app:layout_constraintTop_toBottomOf="@+id/tvRepoName" />
+
+    <TextView
+        android:id="@+id/tvForks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toEndOf="@+id/ivFork"
+        app:layout_constraintTop_toBottomOf="@+id/tvRepoName"
+        tools:text="@sample/repos.json/repos/forks" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

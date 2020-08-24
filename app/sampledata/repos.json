@@ -1,0 +1,24 @@
+{
+  "repos": [
+    {
+      "autor": "Adfrgtb",
+      "avatar": "@drawable/ic_avatar_1",
+      "repo_name": "Repo Kotlin 1",
+      "stars": "200000000",
+      "forks": "1678",
+      "issues": "80",
+      "created": "Criado em 10/10/10",
+      "updated": "Atualizado em 10/10/10"
+    },
+    {
+      "autor": "Adfrgtb",
+      "avatar": "@drawable/ic_avatar_2",
+      "repo_name": "Repo Kotlin 2",
+      "stars": "500000000",
+      "forks": "778",
+      "issues": "50",
+      "created": "Criado em 20/10/20",
+      "updated": "Atualizado em 20/10/20"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TopK</string>
+    <string name="timeout">Esgotado tempo limite para resposta</string>
+    <string name="unauthorized">Acesso nao autorizado</string>
+    <string name="not_found">Recurso nao encontrado</string>
+    <string name="internal_server_error">Erro interno no servidor</string>
+    <string name="service_unavailable">Serviço indisponivel</string>
+    <string name="unexpected_error">Erro inesperado</string>
+    <string name="internet_offline">Sem conexao com a internet</string>
+    <string name="rate_limit_exceeded">Exedido limite de requisiçoes por minuto</string>
+    <string name="main_activity_subtitle">Repositórios Kotlin do Github</string>
+    <string name="btOpenBrowser">VER NA WEB</string>
+    <string name="createdAt">Criado em %1$s</string>
+    <string name="updatedAt">Atualizado em %1$s</string>
+    <string name="cd_imageBack">Imgem de fundo</string>
+    <string name="cd_autorAvatar">Foto do autor</string>
+    <string name="cd_imageStars">Estrelas</string>
+    <string name="cd_forks">Forks</string>
+    <string name="cd_issues">Issues</string>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/repositoryList"
+    android:label="Repo"
+    app:startDestination="@id/repoList">
+
+    <fragment
+        android:id="@+id/repoList"
+        android:name="br.com.emesistemas.topk.ui.fragments.RepoListFragment"
+        android:label="Lista de Repositórios"
+        tools:layout="@layout/fragment_repo_list">
+        <action
+            android:id="@+id/action_repositoryList_to_repositoryDetail"
+            app:destination="@id/repositoryDetail"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/repositoryDetail"
+        android:name="br.com.emesistemas.topk.ui.fragments.RepoDetailFragment"
+        android:label="Detalhe"
+        tools:layout="@layout/fragment_repo_detail">
+        <argument
+            android:name="repoItem"
+            app:argType="br.com.emesistemas.topk.model.Item" />
+    </fragment>
+
+</navigation>

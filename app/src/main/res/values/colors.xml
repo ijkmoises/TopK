@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#24292E</color>
+    <color name="colorPrimaryDark">#0a0b0d</color>
+    <color name="colorAccent">#7DBBE6</color>
+
+    <color name="colorGreenButtonNormal">#4EA450</color>
+    <color name="colorGreenButtonPressed">#3c7d3d</color>
+
+    <color name="colorWhiteButtonNormal">#FAFBFC</color>
+    <color name="colorWhiteButtonPressed">#dedede</color>
+
+    <color name="colorGrey_300">#E0E0E0</color>
+    <color name="colorGrey_400">#BDBDBD</color>
+    <color name="colorGrey_500">#9E9E9E</color>
+    <color name="colorGrey_600">#757575</color>
+    <color name="colorCardDetail">#FAFBFC</color>
+    <color name="colorBlueTextGithub">#0265D6</color>
+
+</resources>
