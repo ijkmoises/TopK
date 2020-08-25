@@ -1,4 +1,4 @@
-package br.com.emesistemas.topk.presentation
+package br.com.emesistemas.topk.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -1,30 +1,24 @@
 package br.com.emesistemas.topk.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.emesistemas.topk.R
+import br.com.emesistemas.topk.databinding.AdapterRepoListItemBinding
 import br.com.emesistemas.topk.model.Item
-import br.com.emesistemas.topk.ui.custom.ImageLoader
-import kotlinx.android.synthetic.main.adapter_repo_list_item.view.*
 
 class RepoListAdapter(
-    private val context: Context,
     private val itemsDataSet: MutableList<Item> = mutableListOf(),
     var onClick: (item: Item) -> Unit = {}
-) : RecyclerView.Adapter<BaseViewHolder>() {
+) : RecyclerView.Adapter<RepoListAdapter.RepoViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder {
-        return RepoViewHolder(LayoutInflater.from(parent.context).inflate(
-            R.layout.adapter_repo_list_item,
-            parent,
-            false
-        ))
+    ): RepoListAdapter.RepoViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val viewDataBinding = AdapterRepoListItemBinding
+            .inflate(inflater, parent, false)
+        return RepoViewHolder(viewDataBinding)
     }
 
     override fun getItemCount(): Int {
@@ -36,15 +30,16 @@ class RepoListAdapter(
         updateList()
     }
 
-    open fun updateList() {
+    private fun updateList() {
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.onBind(position)
+    override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
+        holder.onBind(itemsDataSet[position])
     }
 
-    inner class RepoViewHolder(itemView: View) : BaseViewHolder(itemView) {
+    inner class RepoViewHolder(private val viewDataBinding: AdapterRepoListItemBinding) :
+        RecyclerView.ViewHolder(viewDataBinding.root) {
 
         private lateinit var item: Item
 
@@ -56,21 +51,9 @@ class RepoListAdapter(
             }
         }
 
-        override fun onBind(position: Int) {
-            this.item = itemsDataSet[position]
-
-            with(itemView){
-                tvAutor.text = item.owner.login
-                tvRepoName.text = item.name
-                tvStars.text = item.stargazers_count.toString()
-                tvForks.text = item.forks_count.toString()
-            }
-
-            ImageLoader.download(
-                context,
-                item.owner.avatar_url,
-                itemView.ivAvatar
-            )
+        fun onBind(item: Item) {
+            this.item = item
+            viewDataBinding.item = item
         }
     }
 }

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import br.com.emesistemas.topk.R
-import br.com.emesistemas.topk.presentation.UiStateViewModel
+import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

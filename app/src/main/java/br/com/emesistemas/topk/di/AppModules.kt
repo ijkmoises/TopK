@@ -7,8 +7,8 @@ import br.com.emesistemas.topk.data.local.RepoRepository
 import br.com.emesistemas.topk.data.remote.AppHttp
 import br.com.emesistemas.topk.data.remote.GithubApi
 import br.com.emesistemas.topk.data.remote.ResponseHandler
-import br.com.emesistemas.topk.presentation.RepoListViewModel
-import br.com.emesistemas.topk.presentation.UiStateViewModel
+import br.com.emesistemas.topk.presentation.viewmodel.RepoListViewModel
+import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
 import br.com.emesistemas.topk.ui.adapters.RepoListAdapter
 import br.com.emesistemas.topk.ui.fragments.RepoDetailFragment
 import br.com.emesistemas.topk.ui.fragments.RepoListFragment

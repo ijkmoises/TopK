@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.data.remote.Status
 import br.com.emesistemas.topk.model.Item
-import br.com.emesistemas.topk.presentation.RepoListViewModel
-import br.com.emesistemas.topk.presentation.UiComponent
-import br.com.emesistemas.topk.presentation.UiStateViewModel
+import br.com.emesistemas.topk.presentation.viewmodel.RepoListViewModel
+import br.com.emesistemas.topk.presentation.viewmodel.UiComponent
+import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
 import br.com.emesistemas.topk.ui.adapters.RepoListAdapter
 import br.com.emesistemas.topk.ui.custom.CustomDividerItemDecoration
 import br.com.emesistemas.topk.ui.custom.PaginationListener
@@ -56,10 +56,11 @@ class RepoListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uiStateViewModel.hasComponent = UiComponent(
-            homeAsUpButton = false,
-            titleToolbar = true
-        )
+        uiStateViewModel.hasComponent =
+            UiComponent(
+                homeAsUpButton = false,
+                titleToolbar = true
+            )
         configureRecyclerView()
         configureRecyclerViewPagingListener()
     }

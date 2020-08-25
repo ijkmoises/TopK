@@ -24,4 +24,6 @@ data class Item(
     @Embedded
     val owner: Owner = Owner(),
     var page: Int = 0
-) : Parcelable
+) : Parcelable{
+
+}

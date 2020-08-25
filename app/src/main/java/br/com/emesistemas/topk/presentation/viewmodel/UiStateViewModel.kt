@@ -1,4 +1,4 @@
-package br.com.emesistemas.topk.presentation
+package br.com.emesistemas.topk.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +13,8 @@ class UiStateViewModel : ViewModel(){
             it.value = hasComponent
         }
 
-    var hasComponent: UiComponent = UiComponent()
+    var hasComponent: UiComponent =
+        UiComponent()
         set(value) {
             field = value
             _component.value = value
