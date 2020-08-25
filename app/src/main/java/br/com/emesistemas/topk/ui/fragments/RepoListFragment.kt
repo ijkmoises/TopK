@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.data.remote.Status
+import br.com.emesistemas.topk.databinding.FragmentRepoListBinding
 import br.com.emesistemas.topk.model.Item
 import br.com.emesistemas.topk.presentation.viewmodel.RepoListViewModel
 import br.com.emesistemas.topk.presentation.viewmodel.UiComponent
@@ -42,11 +43,8 @@ class RepoListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fetchRepoKotlinList()
-        return inflater.inflate(
-            R.layout.fragment_repo_list,
-            container,
-            false
-        )
+        val viewBinding = FragmentRepoListBinding.inflate(inflater, container, false)
+        return viewBinding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

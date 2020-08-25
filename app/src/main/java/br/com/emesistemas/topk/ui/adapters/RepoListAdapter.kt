@@ -1,6 +1,7 @@
 package br.com.emesistemas.topk.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.emesistemas.topk.databinding.AdapterRepoListItemBinding
@@ -39,21 +40,23 @@ class RepoListAdapter(
     }
 
     inner class RepoViewHolder(private val viewDataBinding: AdapterRepoListItemBinding) :
-        RecyclerView.ViewHolder(viewDataBinding.root) {
+        RecyclerView.ViewHolder(viewDataBinding.root),View.OnClickListener {
 
         private lateinit var item: Item
 
         init {
-            itemView.setOnClickListener {
-                if (::item.isInitialized) {
-                    onClick(item)
-                }
-            }
+            viewDataBinding.listener = this
         }
 
         fun onBind(item: Item) {
             this.item = item
             viewDataBinding.item = item
+        }
+
+        override fun onClick(v: View?) {
+            if (::item.isInitialized) {
+                onClick(item)
+            }
         }
     }
 }

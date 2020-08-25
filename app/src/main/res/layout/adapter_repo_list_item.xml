@@ -6,6 +6,10 @@
         <variable
             name="item"
             type="br.com.emesistemas.topk.model.Item" />
+
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="16dp"
+        android:onClick="@{listener::onClick}">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivAvatar"
