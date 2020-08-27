@@ -12,34 +12,6 @@ class RepoRepository(
     private val responseHandler: ResponseHandler
 ) {
 
-    lateinit var resource :Resource<Repo>
-
-//    suspend fun fetch(page: Int): Resource<Repo>{
-//        try {
-//            resource = fetchCached(page)
-//
-//            val fromApi = fetchRemote(page)
-//
-//            cache(page, fromApi.items)
-//
-//            resource = responseHandler.handleSuccess(fromApi)
-//
-//        } catch (e: Exception) {
-//            resource = responseHandler.handleException(e)
-//
-//        } finally {
-//            return resource
-//        }
-//    }
-
-//    suspend fun fetchCached(page: Int): Resource<Repo> {
-//        return responseHandler.handleSuccess(Repo(dao.getByPage(page)))
-//    }
-//
-//    suspend fun fetchRemote(page: Int): Repo {
-//        return api.fetchKotlinRepositories(page)
-//    }
-
     suspend fun fetchCached(page: Int): Resource<Repo> {
         return responseHandler.handleSuccess(Repo(dao.getByPage(page)))
     }
