@@ -1,11 +1,9 @@
 package br.com.emesistemas.topk.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import br.com.emesistemas.topk.data.local.RepoRepository
 import br.com.emesistemas.topk.data.remote.Resource
-import br.com.emesistemas.topk.model.Repo
 import kotlinx.coroutines.Dispatchers
 
 class RepoListViewModel(private val repository: RepoRepository) : ViewModel() {
@@ -23,16 +21,18 @@ class RepoListViewModel(private val repository: RepoRepository) : ViewModel() {
         return isLoading
     }
 
-    fun fetchRepoKotlinList(): LiveData<Resource<Repo>> = liveData(Dispatchers.IO) {
+
+    fun fetchListResult() = liveData(Dispatchers.IO) {
+
         if (hasNext()) {
             currentPage++
             isLoading = true
 
-            emit(Resource.loading())
-            emit(repository.fetchCached(currentPage))
+            emit(repository.fetchCached(page = currentPage))
 
             emit(Resource.loading())
-            emit(repository.fetchRemote(currentPage))
+
+            emit(repository.fetchRemote(page = currentPage))
 
             isLoading = false
         } else {

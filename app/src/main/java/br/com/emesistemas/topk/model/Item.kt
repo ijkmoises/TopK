@@ -20,10 +20,8 @@ data class Item(
     val stargazers_count: Int = 0,
     val created_at: String? = "",
     val updated_at: String? = "",
-    val open_issues: Int?,
+    val open_issues: Int? = 0,
     @Embedded
     val owner: Owner = Owner(),
     var page: Int = 0
-) : Parcelable{
-
-}
+) : Parcelable

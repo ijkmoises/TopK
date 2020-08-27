@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.emesistemas.topk.R
+import br.com.emesistemas.topk.data.remote.Resource
 import br.com.emesistemas.topk.data.remote.Status
 import br.com.emesistemas.topk.databinding.FragmentRepoListBinding
 import br.com.emesistemas.topk.model.Item
+import br.com.emesistemas.topk.model.Repo
 import br.com.emesistemas.topk.presentation.viewmodel.RepoListViewModel
 import br.com.emesistemas.topk.presentation.viewmodel.UiComponent
 import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
@@ -92,7 +94,7 @@ class RepoListFragment : Fragment() {
     }
 
     private fun fetchRepoKotlinList() {
-        viewModel.fetchRepoKotlinList().observe(viewLifecycleOwner, Observer { resource ->
+        viewModel.fetchListResult().observe(viewLifecycleOwner, Observer {resource->
             when (resource.status) {
                 Status.SUCCESS -> {
                     resource.data?.let {

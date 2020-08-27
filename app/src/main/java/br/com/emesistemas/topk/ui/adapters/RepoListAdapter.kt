@@ -8,7 +8,7 @@ import br.com.emesistemas.topk.databinding.AdapterRepoListItemBinding
 import br.com.emesistemas.topk.model.Item
 
 class RepoListAdapter(
-    private val itemsDataSet: MutableList<Item> = mutableListOf(),
+    private val itemsDataSet: MutableSet<Item> = mutableSetOf(),
     var onClick: (item: Item) -> Unit = {}
 ) : RecyclerView.Adapter<RepoListAdapter.RepoViewHolder>() {
 
@@ -36,7 +36,7 @@ class RepoListAdapter(
     }
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-        holder.onBind(itemsDataSet[position])
+        holder.onBind(itemsDataSet.elementAt(position))
     }
 
     inner class RepoViewHolder(private val viewDataBinding: AdapterRepoListItemBinding) :

@@ -1,197 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <import
+            alias="to"
+            type="br.com.emesistemas.topk.extension.StringExtensionKt" />
+
+        <variable
+            name="item"
+            type="br.com.emesistemas.topk.model.Item" />
+
+        <variable
+            name="openInWeb"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <ImageView
-            android:id="@+id/ivBackAvatar"
-            android:layout_width="0dp"
-            android:layout_height="350dp"
-            android:background="@color/colorPrimary"
-            android:contentDescription="@string/cd_imageBack"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivAvatar"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="24dp"
-            android:contentDescription="@string/cd_autorAvatar"
-            android:scaleType="centerCrop"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_overlay="true"
-            app:civ_border_width="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@sample/repos.json/repos/avatar" />
+            <ImageView
+                android:id="@+id/ivBackAvatar"
+                android:layout_width="0dp"
+                android:layout_height="350dp"
+                android:background="@color/colorPrimary"
+                android:contentDescription="@string/cd_imageBack"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/tvAutor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
-            tools:text="@sample/repos.json/repos/autor" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/cd_autorAvatar"
+                android:scaleType="centerCrop"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_overlay="true"
+                app:civ_border_width="1dp"
+                app:ctx="@{context}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:url="@{item.owner.avatar_url}"
+                tools:src="@sample/repos.json/repos/avatar" />
 
-        <TextView
-            android:id="@+id/tvRepo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:ellipsize="end"
-            android:gravity="center_horizontal"
-            android:maxLines="2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="@+id/tvAutor"
-            app:layout_constraintStart_toStartOf="@+id/tvAutor"
-            app:layout_constraintTop_toBottomOf="@+id/tvAutor"
-            tools:text="@sample/repos.json/repos/repo_name" />
+            <TextView
+                android:id="@+id/tvAutor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{item.owner.login}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
+                tools:text="@sample/repos.json/repos/autor" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardPlansContainer"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:animateLayoutChanges="true"
-            app:cardBackgroundColor="@color/colorCardDetail"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRepo">
+            <TextView
+                android:id="@+id/tvRepo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="2"
+                android:text="@{item.name}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@+id/tvAutor"
+                app:layout_constraintStart_toStartOf="@+id/tvAutor"
+                app:layout_constraintTop_toBottomOf="@+id/tvAutor"
+                tools:text="@sample/repos.json/repos/repo_name" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPlansContainer"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:animateLayoutChanges="true"
+                app:cardBackgroundColor="@color/colorCardDetail"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRepo">
 
-                <TextView
-                    android:id="@+id/tvStars"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tvForks"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivStar"
-                    tools:text="@sample/repos.json/repos/stars" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tvForks"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tvIssue"
-                    app:layout_constraintStart_toEndOf="@+id/tvStars"
-                    app:layout_constraintTop_toBottomOf="@+id/ivFork"
-                    tools:text="@sample/repos.json/repos/forks" />
+                    <TextView
+                        android:id="@+id/tvStars"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@{Integer.toString(item.stargazers_count)}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tvForks"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivStar"
+                        tools:text="@sample/repos.json/repos/stars" />
 
-                <ImageView
-                    android:id="@+id/ivStar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/cd_imageStars"
-                    android:src="@drawable/star_outline"
-                    app:layout_constraintBottom_toTopOf="@+id/tvStars"
-                    app:layout_constraintEnd_toStartOf="@+id/ivFork"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tvForks"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@{Integer.toString(item.forks_count)}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tvIssue"
+                        app:layout_constraintStart_toEndOf="@+id/tvStars"
+                        app:layout_constraintTop_toBottomOf="@+id/ivFork"
+                        tools:text="@sample/repos.json/repos/forks" />
 
-                <ImageView
-                    android:id="@+id/ivIssue"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/cd_issues"
-                    android:src="@drawable/alert_circle_outline"
-                    app:layout_constraintBottom_toTopOf="@+id/tvIssue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ivFork"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/ivStar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/cd_imageStars"
+                        android:src="@drawable/star_outline"
+                        app:layout_constraintBottom_toTopOf="@+id/tvStars"
+                        app:layout_constraintEnd_toStartOf="@+id/ivFork"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvIssue"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvForks"
-                    app:layout_constraintTop_toBottomOf="@+id/ivIssue"
-                    tools:text="@sample/repos.json/repos/issues" />
+                    <ImageView
+                        android:id="@+id/ivIssue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/cd_issues"
+                        android:src="@drawable/alert_circle_outline"
+                        app:layout_constraintBottom_toTopOf="@+id/tvIssue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivFork"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/ivFork"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/cd_forks"
-                    android:src="@drawable/source_fork"
-                    app:layout_constraintBottom_toTopOf="@+id/tvForks"
-                    app:layout_constraintEnd_toStartOf="@+id/ivIssue"
-                    app:layout_constraintStart_toEndOf="@+id/ivStar"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tvIssue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@{Integer.toString(item.open_issues)}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvForks"
+                        app:layout_constraintTop_toBottomOf="@+id/ivIssue"
+                        tools:text="@sample/repos.json/repos/issues" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/ivFork"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/cd_forks"
+                        android:src="@drawable/source_fork"
+                        app:layout_constraintBottom_toTopOf="@+id/tvForks"
+                        app:layout_constraintEnd_toStartOf="@+id/ivIssue"
+                        app:layout_constraintStart_toEndOf="@+id/ivStar"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tvCreated"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintStart_toStartOf="@+id/cardPlansContainer"
-            app:layout_constraintTop_toBottomOf="@+id/cardPlansContainer"
-            tools:text="@sample/repos.json/repos/created" />
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/tvUpdated"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintStart_toStartOf="@+id/tvCreated"
-            app:layout_constraintTop_toBottomOf="@+id/tvCreated"
-            tools:text="@sample/repos.json/repos/updated" />
+            <TextView
+                android:id="@+id/tvCreated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{@string/createdAt(to.ddMMyy(item.created_at))}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintStart_toStartOf="@+id/cardPlansContainer"
+                app:layout_constraintTop_toBottomOf="@+id/cardPlansContainer"
+                tools:text="@sample/repos.json/repos/created" />
 
-        <Button
-            android:id="@+id/btOpenWeb"
-            style="@style/bt_green"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="48dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:text="@string/btOpenBrowser"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvUpdated" />
+            <TextView
+                android:id="@+id/tvUpdated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{@string/createdAt(to.ddMMyy(item.updated_at))}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintStart_toStartOf="@+id/tvCreated"
+                app:layout_constraintTop_toBottomOf="@+id/tvCreated"
+                tools:text="@sample/repos.json/repos/updated" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:onClick="@{openInWeb}"
+                android:id="@+id/btOpenWeb"
+                style="@style/bt_green"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="48dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="@string/btOpenBrowser"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUpdated" />
 
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
