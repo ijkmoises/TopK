@@ -1,4 +1,4 @@
-package br.com.emesistemas.topk.ui.fragments
+package br.com.emesistemas.topk.presentation.ui.fragments
 
 import android.content.Intent
 import android.net.Uri

@@ -1,4 +1,4 @@
-package br.com.emesistemas.topk.ui.adapters
+package br.com.emesistemas.topk.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View

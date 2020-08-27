@@ -1,4 +1,4 @@
-package br.com.emesistemas.topk.ui.custom
+package br.com.emesistemas.topk.presentation.ui.custom
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/repoList"
-        android:name="br.com.emesistemas.topk.ui.fragments.RepoListFragment"
+        android:name="br.com.emesistemas.topk.presentation.ui.fragments.RepoListFragment"
         android:label="@string/label_repolist_fragment"
         tools:layout="@layout/fragment_repo_list">
         <action
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/repositoryDetail"
-        android:name="br.com.emesistemas.topk.ui.fragments.RepoDetailFragment"
+        android:name="br.com.emesistemas.topk.presentation.ui.fragments.RepoDetailFragment"
         tools:layout="@layout/fragment_repo_detail">
         <argument
             android:name="repoItem"

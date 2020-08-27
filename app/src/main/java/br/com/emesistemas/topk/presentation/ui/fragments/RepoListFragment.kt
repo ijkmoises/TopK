@@ -1,4 +1,4 @@
-package br.com.emesistemas.topk.ui.fragments
+package br.com.emesistemas.topk.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,17 +11,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.emesistemas.topk.R
-import br.com.emesistemas.topk.data.remote.Resource
 import br.com.emesistemas.topk.data.remote.Status
 import br.com.emesistemas.topk.databinding.FragmentRepoListBinding
 import br.com.emesistemas.topk.model.Item
-import br.com.emesistemas.topk.model.Repo
 import br.com.emesistemas.topk.presentation.viewmodel.RepoListViewModel
 import br.com.emesistemas.topk.presentation.viewmodel.UiComponent
 import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
-import br.com.emesistemas.topk.ui.adapters.RepoListAdapter
-import br.com.emesistemas.topk.ui.custom.CustomDividerItemDecoration
-import br.com.emesistemas.topk.ui.custom.PaginationListener
+import br.com.emesistemas.topk.presentation.ui.adapters.RepoListAdapter
+import br.com.emesistemas.topk.presentation.ui.custom.CustomDividerItemDecoration
+import br.com.emesistemas.topk.presentation.ui.custom.PaginationListener
 import kotlinx.android.synthetic.main.fragment_repo_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel

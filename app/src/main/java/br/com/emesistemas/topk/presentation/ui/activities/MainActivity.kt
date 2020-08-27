@@ -1,4 +1,4 @@
-package br.com.emesistemas.topk.ui.activities
+package br.com.emesistemas.topk.presentation.ui.activities
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: UiStateViewModel by viewModel()
 
-    private val controlador by lazy {
+    private val navController by lazy {
         findNavController(R.id.main_activity_nav_host)
     }
 
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        controlador.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
 
             viewModel.componentsLiveData.observe(this, Observer {
 
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == android.R.id.home) {
-            controlador.popBackStack()
+            navController.popBackStack()
             return true
         }
         return super.onOptionsItemSelected(item)

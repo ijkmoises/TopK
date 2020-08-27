@@ -9,9 +9,9 @@ import br.com.emesistemas.topk.data.remote.GithubApi
 import br.com.emesistemas.topk.data.remote.ResponseHandler
 import br.com.emesistemas.topk.presentation.viewmodel.RepoListViewModel
 import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
-import br.com.emesistemas.topk.ui.adapters.RepoListAdapter
-import br.com.emesistemas.topk.ui.fragments.RepoDetailFragment
-import br.com.emesistemas.topk.ui.fragments.RepoListFragment
+import br.com.emesistemas.topk.presentation.ui.adapters.RepoListAdapter
+import br.com.emesistemas.topk.presentation.ui.fragments.RepoDetailFragment
+import br.com.emesistemas.topk.presentation.ui.fragments.RepoListFragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
