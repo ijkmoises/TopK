@@ -95,9 +95,9 @@ class RepoListFragment : Fragment() {
         viewModel.fetchListResult().observe(viewLifecycleOwner, Observer {resource->
             when (resource.status) {
                 Status.SUCCESS -> {
-                    resource.data?.let {
-                        hideLoading()
-                        adapter.submitList(it.items)
+                    hideLoading()
+                    resource.data?.let {repo->
+                       adapter.submitList(repo.items)
                     }
                 }
                 Status.ERROR -> {

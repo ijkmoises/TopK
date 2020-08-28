@@ -63,5 +63,5 @@ val viewModelModule = module {
 val uiModule = module {
     factory<RepoListFragment> { RepoListFragment() }
     factory<RepoDetailFragment> { RepoDetailFragment() }
-    factory<RepoListAdapter> { RepoListAdapter() }
+    factory<RepoListAdapter> { RepoListAdapter(get()) }
 }

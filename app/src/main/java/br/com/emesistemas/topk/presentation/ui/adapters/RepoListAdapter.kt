@@ -1,5 +1,6 @@
 package br.com.emesistemas.topk.presentation.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,8 @@ import br.com.emesistemas.topk.databinding.AdapterRepoListItemBinding
 import br.com.emesistemas.topk.model.Item
 
 class RepoListAdapter(
-    private val itemsDataSet: MutableSet<Item> = mutableSetOf(),
+    private val context: Context,
+    private val dataSet: MutableSet<Item> = mutableSetOf(),
     var onClick: (item: Item) -> Unit = {}
 ) : RecyclerView.Adapter<RepoListAdapter.RepoViewHolder>() {
 
@@ -16,31 +18,31 @@ class RepoListAdapter(
         parent: ViewGroup,
         viewType: Int
     ): RepoListAdapter.RepoViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(context)
         val viewDataBinding = AdapterRepoListItemBinding
             .inflate(inflater, parent, false)
         return RepoViewHolder(viewDataBinding)
     }
 
     override fun getItemCount(): Int {
-        return itemsDataSet.size
+        return dataSet.size
     }
 
     fun submitList(items: List<Item>) {
-        itemsDataSet.addAll(items)
-        updateList()
+        dataSet.addAll(items)
+        updateDataSet()
     }
 
-    private fun updateList() {
+    fun updateDataSet() {
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-        holder.onBind(itemsDataSet.elementAt(position))
+        holder.onBind(dataSet.elementAt(position))
     }
 
     inner class RepoViewHolder(private val viewDataBinding: AdapterRepoListItemBinding) :
-        RecyclerView.ViewHolder(viewDataBinding.root),View.OnClickListener {
+        RecyclerView.ViewHolder(viewDataBinding.root), View.OnClickListener {
 
         private lateinit var item: Item
 

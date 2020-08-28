@@ -8,6 +8,7 @@ import br.com.emesistemas.topk.data.local.AppDatabase
 import br.com.emesistemas.topk.data.local.ItemDao
 import br.com.emesistemas.topk.model.Item
 import br.com.emesistemas.topk.model.Owner
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
@@ -35,9 +36,7 @@ class ItemDaoTest {
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(
-            context, AppDatabase::class.java
-        ).build()
+        db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
         itemDao = db.getItemDao()
     }
 
@@ -46,7 +45,6 @@ class ItemDaoTest {
     fun closeDb() {
         db.close()
     }
-
 
     @Test
     @Throws(Exception::class)
