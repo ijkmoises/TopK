@@ -6,6 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:visibility="gone"
+            android:id="@+id/container_list_message"
+            layout="@layout/inlcude_no_repo_to_display"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRepoList"
             android:layout_width="0dp"

@@ -28,12 +28,12 @@ class RepoListAdapter(
         return dataSet.size
     }
 
-    fun submitList(items: List<Item>) {
-        dataSet.addAll(items)
-        updateDataSet()
+    fun isEmpty(): Boolean {
+        return dataSet.isEmpty()
     }
 
-    fun updateDataSet() {
+    fun submitList(items: List<Item>) {
+        dataSet.addAll(items)
         notifyDataSetChanged()
     }
 

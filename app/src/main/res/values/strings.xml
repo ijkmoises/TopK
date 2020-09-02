@@ -18,4 +18,6 @@
     <string name="cd_forks">Forks</string>
     <string name="cd_issues">Issues</string>
     <string name="label_repolist_fragment">Top repositórios Kotlin</string>
+    <string name="repo_list_void_message">Nenhum reposítório para exibir no momento</string>
+    <string name="btFetchRepoTryAgain">Tentar novamente</string>
 </resources>

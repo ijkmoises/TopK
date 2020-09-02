@@ -80,7 +80,7 @@
                 android:gravity="center_horizontal"
                 android:maxLines="2"
                 android:text="@{item.name}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="@+id/tvAutor"
                 app:layout_constraintStart_toStartOf="@+id/tvAutor"
@@ -109,6 +109,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tvStars"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -122,6 +123,7 @@
                         tools:text="@sample/repos.json/repos/stars" />
 
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tvForks"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -157,6 +159,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tvIssue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -190,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@{@string/createdAt(to.ddMMyy(item.created_at))}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintStart_toStartOf="@+id/cardPlansContainer"
                 app:layout_constraintTop_toBottomOf="@+id/cardPlansContainer"
                 tools:text="@sample/repos.json/repos/created" />
@@ -200,8 +203,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="@{@string/createdAt(to.ddMMyy(item.updated_at))}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="@{@string/updatedAt(to.ddMMyy(item.updated_at))}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintStart_toStartOf="@+id/tvCreated"
                 app:layout_constraintTop_toBottomOf="@+id/tvCreated"
                 tools:text="@sample/repos.json/repos/updated" />
@@ -210,7 +213,7 @@
                 android:onClick="@{openInWeb}"
                 android:id="@+id/btOpenWeb"
                 style="@style/bt_green"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="48dp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"

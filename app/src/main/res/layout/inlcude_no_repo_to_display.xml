@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="fetchRepo"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="@string/repo_list_void_message"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btOpenWeb"
+            style="@style/bt_white"
+            android:layout_marginTop="48dp"
+            android:onClick="@{fetchRepo}"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/btFetchRepoTryAgain"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@+id/tvMessage"
+            app:layout_constraintStart_toStartOf="@+id/tvMessage"
+            app:layout_constraintTop_toBottomOf="@+id/tvMessage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

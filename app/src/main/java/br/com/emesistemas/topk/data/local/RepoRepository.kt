@@ -20,16 +20,14 @@ class RepoRepository(
         return try {
             val fromApi = api.fetchKotlinRepositories(page)
             cache(page, fromApi.items)
-            responseHandler.handleSuccess(fromApi)
+            responseHandler.handleSuccess(Repo(dao.getByPage(page)))
         } catch (e: Exception) {
             responseHandler.handleException(e)
         }
     }
 
     private suspend fun cache(page: Int, repoItems: List<Item>) {
-        for (item in repoItems) {
-            item.page = page
-        }
+        repoItems.forEach { it.page = page }
         dao.insertAll(repoItems)
     }
 }
