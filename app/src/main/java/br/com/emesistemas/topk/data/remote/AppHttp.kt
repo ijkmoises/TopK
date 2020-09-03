@@ -1,5 +1,6 @@
 package br.com.emesistemas.topk.data.remote
 
+import br.com.emesistemas.topk.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -9,7 +10,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val BASE_URL: String = "https://api.github.com/search/"
 
 class AppHttp {
 
@@ -21,7 +21,8 @@ class AppHttp {
             .connectTimeout(2, TimeUnit.MINUTES)
             .readTimeout(2, TimeUnit.MINUTES)
             .addInterceptor(logging)
-            .addInterceptor(object: Interceptor{
+            .addInterceptor(MockInterceptor())
+            .addInterceptor(object : Interceptor {
                 override fun intercept(chain: Interceptor.Chain): Response {
                     val original: Request = chain.request()
 
@@ -35,7 +36,7 @@ class AppHttp {
                         .build()
 
                     val requestBuilder = original.newBuilder().url(url).also {
-                        it.header("accept","application/vnd.github.v3+json").build()
+                        it.header("accept", "application/vnd.github.v3+json").build()
                     }
 
                     val request = requestBuilder.build()
@@ -47,7 +48,7 @@ class AppHttp {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.URLBASE)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build()

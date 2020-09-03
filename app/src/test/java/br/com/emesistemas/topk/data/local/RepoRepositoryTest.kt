@@ -43,6 +43,7 @@ class RepoRepositoryTest {
     @Test
     fun `test fetchRemote when some page is requested, then Repo items is returned`() {
         runBlocking {
+            whenever(dao.getByPage(1)).thenReturn(items)
             whenever(githubApi.fetchKotlinRepositories(1)).thenReturn(repo)
             assertEquals(successResource, repository.fetchRemote(1))
         }

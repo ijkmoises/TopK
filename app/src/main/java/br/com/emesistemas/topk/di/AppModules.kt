@@ -1,6 +1,7 @@
 package br.com.emesistemas.topk.di
 
 import androidx.room.Room
+import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.data.local.AppDatabase
 import br.com.emesistemas.topk.data.local.ItemDao
 import br.com.emesistemas.topk.data.local.RepoRepository
@@ -15,14 +16,12 @@ import br.com.emesistemas.topk.presentation.ui.fragments.RepoListFragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-private const val DB_NAME = "topk.db"
-
 val databaseModule = module {
     single<AppDatabase> {
         Room.databaseBuilder(
             get(),
             AppDatabase::class.java,
-            DB_NAME
+            BuildConfig.DATABASENAME
         ).build()
     }
 }
