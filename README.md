@@ -2,9 +2,9 @@
     TopK
 </h1>
 
-<p>
+<h2 align="center">
     Lista de repositórios com mais estrelas em Kotlin
-</p>
+</h2>
 
 ## Screenshots
 
