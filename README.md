@@ -8,6 +8,7 @@
 
 <p align="center">
   <img src="screenshots/frag_repo_list.png" width="270" alt="Lista de repositórios">
+  <span>&nbsp;&nbsp;&nbsp;</span>
   <img src="screenshots/frag_repo_detail.png" width="270" alt="Detalhe de um repositório">
 </p>
 
