@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TopK</string>
     <string name="timeout">Esgotado tempo limite para resposta</string>
     <string name="unauthorized">Acesso não autorizado</string>
@@ -8,16 +8,15 @@
     <string name="unexpected_error">Erro inesperado</string>
     <string name="internet_offline">Sem conexao com a internet</string>
     <string name="rate_limit_exceeded">Exedido limite de requisiçoes por minuto</string>
-    <string name="main_activity_subtitle">Repositórios Kotlin do Github</string>
     <string name="btOpenBrowser">VER NA WEB</string>
     <string name="createdAt">Criado em %1$s</string>
     <string name="updatedAt">Atualizado em %1$s</string>
     <string name="cd_imageBack">Imagem de fundo</string>
-    <string name="cd_autorAvatar">Foto do autor</string>
+    <string name="cd_autorAvatar" tools:ignore="Typos">Foto do autor</string>
     <string name="cd_imageStars">Estrelas</string>
     <string name="cd_forks">Forks</string>
     <string name="cd_issues">Issues</string>
     <string name="label_repolist_fragment">Top repositórios Kotlin</string>
-    <string name="repo_list_void_message">Nenhum reposítório para exibir no momento</string>
+    <string name="repo_list_void_message" tools:ignore="Typos">Nenhum reposítório para exibir no momento</string>
     <string name="btFetchRepoTryAgain">Tentar novamente</string>
 </resources>
