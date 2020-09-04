@@ -35,12 +35,6 @@ class RepoDetailFragmentTest : BaseUiTest() {
         setFlagIsUiTestingRunning(true)
     }
 
-    @After
-    fun tearDown() {
-        clearDatabase()
-        setFlagIsUiTestingRunning(false)
-    }
-
     @Test
     fun test_A_isAllRepoDetailVisible() {
 

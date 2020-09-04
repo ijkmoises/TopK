@@ -32,12 +32,6 @@ class RepoListFragmentTest : BaseUiTest() {
         setFlagIsUiTestingRunning(true)
     }
 
-    //@After
-    fun tearDown() {
-        //clearDatabase()
-        setFlagIsUiTestingRunning(false)
-    }
-
     @Test
     fun isRecyclerViewVisible_onAppLaunch() {
         onView(withId(R.id.rvRepoList))
