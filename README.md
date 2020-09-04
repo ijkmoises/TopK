@@ -9,27 +9,14 @@
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/" width="270" alt="Lista de gêneros">
-  <img src="screenshots/" width="270" alt="Lista de filmes">
+  <img src="screenshots/frag_repo_detail.png" width="270" alt="Lista de repositórios">
+  <img src="screenshots/frag_repo_list.png" width="270" alt="Detalhe de um repositório">
 </p>
 
 <p align="center">
-  <img src="screenshots/" width="270" alt="Detalhe do filme">
-  <img src="screenshots/" width="270" alt="Detalhe do filme">
+  <img src="screenshots/frag_repo_list_land" height="270" alt="Lista do filme - retrato">
 </p>
 
-<p align="center">
-  <img src="screenshots/" height="270" alt="Lista do filme - retrato">
-</p>
-
-<p align="center">
-  <img src="screenshots/" height="270" alt="Detalhe do filme - retrato">
-</p>
-
-<p align="center">
-  <img src="screenshots/" width="270" alt="Lista de filmes">
-  <img src="screenshots/" width="270" alt="Lista de filmes">
-</p>
 
 ## Arquitetura
 
@@ -38,6 +25,8 @@
 ## Features
 
 - Lista de repositórios Kotlin com mais estrelas
+- Detalhes de um repositório
+- Direcionamento para a página no Github
 - Paginação da lista de repositórios
 - Persistência local da lista 
 - Acesso ao conteúdo mesmo offline
