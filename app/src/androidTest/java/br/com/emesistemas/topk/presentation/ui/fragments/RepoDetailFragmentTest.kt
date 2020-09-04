@@ -9,6 +9,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.R
@@ -18,8 +19,13 @@ import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.startsWith
 import org.junit.After
 import org.junit.Before
+import org.junit.FixMethodOrder
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.MethodSorters
 
+@RunWith(AndroidJUnit4::class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class RepoDetailFragmentTest {
 
     //@get:Rule
@@ -30,6 +36,8 @@ class RepoDetailFragmentTest {
     @Before
     fun setup() {
         BuildConfig.IS_UI_TESTING.set(true)
+        val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+        scenario = launchActivity(intent)
     }
 
     @After
@@ -43,12 +51,7 @@ class RepoDetailFragmentTest {
     }
 
     @Test
-    fun test_isAllRepoDetailVisible() {
-
-        val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
-
-        scenario = launchActivity(intent)
-
+    fun test_A_isAllRepoDetailVisible() {
 
         onView(withId(R.id.rvRepoList))
             .perform(
@@ -104,7 +107,7 @@ class RepoDetailFragmentTest {
     }
 
     @Test
-    fun test_Toolbar_hasHomeAsUpButton() {
+    fun test_B_Toolbar_hasHomeAsUpButton() {
         onView(
             allOf(
                 withId(R.id.toolbar)
@@ -115,7 +118,7 @@ class RepoDetailFragmentTest {
     }
 
     @Test
-    fun test_ToolbarTitle_isEmpty() {
+    fun test_C_ToolbarTitle_isEmpty() {
         onView(
             allOf(
                 withId(R.id.toolbar)
