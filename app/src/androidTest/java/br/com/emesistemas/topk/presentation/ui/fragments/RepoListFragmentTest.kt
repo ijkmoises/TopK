@@ -3,6 +3,7 @@ package br.com.emesistemas.topk.presentation.ui.fragments
 import EspressoIdlingResourceRule
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -11,7 +12,9 @@ import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.mathers.ViewMatcher.matchesInPosition
 import br.com.emesistemas.topk.presentation.ui.activities.MainActivity
+import org.hamcrest.Matchers
 import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.not
 
 import org.junit.After
 import org.junit.Before
@@ -33,9 +36,7 @@ class RepoListFragmentTest {
     fun setup() {
         println("moises ramos setup ")
         BuildConfig.IS_UI_TESTING.set(true)
-
     }
-
 
     fun tearDown() {
         println("moises ramos tearDown ")
@@ -46,7 +47,7 @@ class RepoListFragmentTest {
 
     @Test
     fun test_isRecyclerViewVisible_onAppLaunch() {
-        println("moises ramos teste frag "+BuildConfig.IS_UI_TESTING.get())
+        println("moises ramos teste frag " + BuildConfig.IS_UI_TESTING.get())
         onView(withId(R.id.rvRepoList))
             .check(matches(isDisplayed()))
     }
@@ -57,11 +58,11 @@ class RepoListFragmentTest {
             .check(
                 matches(
                     matchesInPosition(
-                        position = 0,
-                        verifyAuthorName = "google",
-                        verifyForksCount = 6098,
-                        verifyRepoName = "iosched",
-                        verifyStarsCount = 20098
+                        position = 0
+                        , verifyAuthorName = "google"
+                        , verifyForksCount = 6098
+                        , verifyRepoName = "iosched"
+                        , verifyStarsCount = 20098
                     )
                 )
             )
@@ -70,11 +71,11 @@ class RepoListFragmentTest {
             .check(
                 matches(
                     matchesInPosition(
-                        position = 1,
-                        verifyAuthorName = "android",
-                        verifyForksCount = 6270,
-                        verifyRepoName = "architecture-components-samples",
-                        verifyStarsCount = 18171
+                        position = 1
+                        , verifyAuthorName = "android"
+                        , verifyForksCount = 6270
+                        , verifyRepoName = "architecture-components-samples"
+                        , verifyStarsCount = 18171
                     )
                 )
             )
@@ -83,11 +84,11 @@ class RepoListFragmentTest {
             .check(
                 matches(
                     matchesInPosition(
-                        position = 2,
-                        verifyAuthorName = "afollestad",
-                        verifyForksCount = 3042,
-                        verifyRepoName = "material-dialogs",
-                        verifyStarsCount = 18071
+                        position = 2
+                        , verifyAuthorName = "afollestad"
+                        , verifyForksCount = 3042
+                        , verifyRepoName = "material-dialogs"
+                        , verifyStarsCount = 18071
                     )
                 )
             )
@@ -95,9 +96,24 @@ class RepoListFragmentTest {
 
     @Test
     fun test_ToolbarTitle_Text() {
-        onView(allOf(withId(R.id.toolbar)
-            , withText("Top repositórios Kotlin")
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.toolbar)
+                , withText("Top repositórios Kotlin")
+                , isDisplayed()
+            )
+        )
+    }
+
+    @Test
+    fun test_Toolbar_notHasHomeAsUpButton() {
+        onView(
+            allOf(
+                withId(R.id.toolbar)
+                , withId(android.R.id.home)
+                , not(isDisplayed())
+            )
+        )
     }
 
 }

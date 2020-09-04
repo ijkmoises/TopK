@@ -88,7 +88,7 @@
                 tools:text="@sample/repos.json/repos/repo_name" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardPlansContainer"
+                android:id="@+id/cardContainer"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="24dp"
@@ -131,7 +131,7 @@
                         android:text="@{Integer.toString(item.forks_count)}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/tvIssue"
+                        app:layout_constraintEnd_toStartOf="@+id/tvIssuesCount"
                         app:layout_constraintStart_toEndOf="@+id/tvStarsCount"
                         app:layout_constraintTop_toBottomOf="@+id/ivFork"
                         tools:text="@sample/repos.json/repos/forks" />
@@ -153,14 +153,14 @@
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/cd_issues"
                         android:src="@drawable/alert_circle_outline"
-                        app:layout_constraintBottom_toTopOf="@+id/tvIssue"
+                        app:layout_constraintBottom_toTopOf="@+id/tvIssuesCount"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/ivFork"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:textStyle="bold"
-                        android:id="@+id/tvIssue"
+                        android:id="@+id/tvIssuesCount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -194,8 +194,8 @@
                 android:layout_marginTop="24dp"
                 android:text="@{@string/createdAt(to.ddMMyy(item.created_at))}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                app:layout_constraintStart_toStartOf="@+id/cardPlansContainer"
-                app:layout_constraintTop_toBottomOf="@+id/cardPlansContainer"
+                app:layout_constraintStart_toStartOf="@+id/cardContainer"
+                app:layout_constraintTop_toBottomOf="@+id/cardContainer"
                 tools:text="@sample/repos.json/repos/created" />
 
             <TextView
