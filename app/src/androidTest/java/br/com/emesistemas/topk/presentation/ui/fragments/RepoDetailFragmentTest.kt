@@ -1,26 +1,22 @@
 package br.com.emesistemas.topk.presentation.ui.fragments
 
-import android.content.Intent
-import androidx.test.core.app.ActivityScenario
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.presentation.ui.activities.MainActivity
 import br.com.emesistemas.topk.presentation.ui.adapters.RepoListAdapter
+import br.com.emesistemas.topk.util.EspressoIdlingResourceRule
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.startsWith
-import org.junit.After
-import org.junit.Before
-import org.junit.FixMethodOrder
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 
@@ -28,38 +24,37 @@ import org.junit.runners.MethodSorters
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class RepoDetailFragmentTest {
 
-    //@get:Rule
-    //val activityRule = ActivityScenarioRule(MainActivity::class.java)
+    @get:Rule
+    val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
-    lateinit var scenario: ActivityScenario<MainActivity>
+    @get: Rule
+    val espressoIdlingResourceRule = EspressoIdlingResourceRule()
 
     @Before
     fun setup() {
+        clearDatabase()
         BuildConfig.IS_UI_TESTING.set(true)
-        val intent = Intent(
-            ApplicationProvider.getApplicationContext()
-            , MainActivity::class.java
-        )
-        scenario = launchActivity(intent)
     }
 
     @After
     fun tearDown() {
-        if (::scenario.isInitialized) {
-            scenario.close()
-        }
+        clearDatabase()
         BuildConfig.IS_UI_TESTING.set(false)
+    }
+
+    private fun clearDatabase() {
         InstrumentationRegistry.getInstrumentation()
-            .targetContext.deleteDatabase(BuildConfig.DATABASENAME_TEST)
+            .targetContext.deleteDatabase(BuildConfig.DATABASENAME)
     }
 
     @Test
     fun test_A_isAllRepoDetailVisible() {
 
+        onView(withId(R.id.rvRepoList)).check(matches(isDisplayed()))
+
         onView(withId(R.id.rvRepoList))
-            .perform(
-                actionOnItemAtPosition<RepoListAdapter.RepoViewHolder>(0, click())
-            )
+            .perform(RecyclerViewActions.scrollToPosition<RepoListAdapter.RepoViewHolder>(0)
+                ,actionOnItemAtPosition<RepoListAdapter.RepoViewHolder>(0, click()))
 
         onView(withId(R.id.ivBackAvatar))
             .check(matches(isDisplayed()))
@@ -67,44 +62,42 @@ class RepoDetailFragmentTest {
         onView(
             allOf(
                 withId(R.id.tvAuthor)
-                , withText("google")
-                , isDisplayed()
+                , withText("google"), isDisplayed()
             )
         )
 
         onView(
             allOf(
                 withId(R.id.tvRepo)
-                , withText("iosched")
-                , isDisplayed()
+                , withText("iosched"), isDisplayed()
             )
         )
 
         onView(
             allOf(
-                withId(R.id.cardContainer)
-                , isDisplayed()
+                withId(R.id.cardContainer),
+                isDisplayed()
             )
         )
 
         onView(
             allOf(
-                withId(R.id.ivStar)
-                , isDisplayed()
+                withId(R.id.ivStar),
+                isDisplayed()
             )
         )
 
         onView(
             allOf(
-                withId(R.id.ivFork)
-                , isDisplayed()
+                withId(R.id.ivFork),
+                isDisplayed()
             )
         )
 
         onView(
             allOf(
-                withId(R.id.ivIssue)
-                , isDisplayed()
+                withId(R.id.ivIssue),
+                isDisplayed()
             )
         )
 

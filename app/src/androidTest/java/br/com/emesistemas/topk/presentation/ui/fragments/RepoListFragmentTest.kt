@@ -1,9 +1,10 @@
 package br.com.emesistemas.topk.presentation.ui.fragments
 
-import EspressoIdlingResourceRule
+import br.com.emesistemas.topk.util.EspressoIdlingResourceRule
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -12,11 +13,10 @@ import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.mathers.ViewMatcher.matchesInPosition
 import br.com.emesistemas.topk.presentation.ui.activities.MainActivity
-import org.hamcrest.Matchers
+import br.com.emesistemas.topk.presentation.ui.adapters.RepoListAdapter
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,20 +34,22 @@ class RepoListFragmentTest {
 
     @Before
     fun setup() {
-        println("moises ramos setup ")
+        clearDatabase()
         BuildConfig.IS_UI_TESTING.set(true)
     }
 
     fun tearDown() {
-        println("moises ramos tearDown ")
+        clearDatabase()
         BuildConfig.IS_UI_TESTING.set(false)
+    }
+
+    private fun clearDatabase(){
         InstrumentationRegistry.getInstrumentation()
-            .targetContext.deleteDatabase(BuildConfig.DATABASENAME_TEST)
+            .targetContext.deleteDatabase(BuildConfig.DATABASENAME)
     }
 
     @Test
     fun isRecyclerViewVisible_onAppLaunch() {
-        println("moises ramos teste frag " + BuildConfig.IS_UI_TESTING.get())
         onView(withId(R.id.rvRepoList))
             .check(matches(isDisplayed()))
     }
@@ -92,6 +94,9 @@ class RepoListFragmentTest {
                     )
                 )
             )
+
+        onView(withId(R.id.rvRepoList))
+                .perform(actionOnItemAtPosition<RepoListAdapter.RepoViewHolder>(0, click()))
     }
 
     @Test
