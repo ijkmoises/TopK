@@ -46,14 +46,14 @@ class RepoListFragmentTest {
     }
 
     @Test
-    fun test_isRecyclerViewVisible_onAppLaunch() {
+    fun isRecyclerViewVisible_onAppLaunch() {
         println("moises ramos teste frag " + BuildConfig.IS_UI_TESTING.get())
         onView(withId(R.id.rvRepoList))
             .check(matches(isDisplayed()))
     }
 
     @Test
-    fun test_RecyclerViewHasThreeItemsVisibles_With_AuthorName_And_RepoName_And_Forks_And_Stars() {
+    fun recyclerViewHasThreeItemsVisibles_With_AuthorName_And_RepoName_And_Forks_And_Stars() {
         onView(withId(R.id.rvRepoList))
             .check(
                 matches(
@@ -95,7 +95,7 @@ class RepoListFragmentTest {
     }
 
     @Test
-    fun test_ToolbarTitle_Text() {
+    fun toolbar_hasTitle() {
         onView(
             allOf(
                 withId(R.id.toolbar)
@@ -106,7 +106,7 @@ class RepoListFragmentTest {
     }
 
     @Test
-    fun test_Toolbar_notHasHomeAsUpButton() {
+    fun toolbar_notHasHomeAsUpButton() {
         onView(
             allOf(
                 withId(R.id.toolbar)

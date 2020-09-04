@@ -36,13 +36,16 @@ class RepoDetailFragmentTest {
     @Before
     fun setup() {
         BuildConfig.IS_UI_TESTING.set(true)
-        val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+        val intent = Intent(
+            ApplicationProvider.getApplicationContext()
+            , MainActivity::class.java
+        )
         scenario = launchActivity(intent)
     }
 
     @After
     fun tearDown() {
-        if(::scenario.isInitialized){
+        if (::scenario.isInitialized) {
             scenario.close()
         }
         BuildConfig.IS_UI_TESTING.set(false)
@@ -61,49 +64,97 @@ class RepoDetailFragmentTest {
         onView(withId(R.id.ivBackAvatar))
             .check(matches(isDisplayed()))
 
-        onView(allOf(withId(R.id.tvAuthor)
-            , withText("google")
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.tvAuthor)
+                , withText("google")
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.tvRepo)
-            , withText("iosched")
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.tvRepo)
+                , withText("iosched")
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.cardContainer)
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.cardContainer)
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.ivStar)
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.ivStar)
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.ivFork)
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.ivFork)
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.ivIssue)
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.ivIssue)
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.tvStarsCount)
-            , withText("20098")
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.tvStarsCount)
+                , withText("20098")
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.tvForksCount)
-            , withText("6098")
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.tvForksCount)
+                , withText("6098")
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.tvIssuesCount)
-            , withText("50")
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.tvIssuesCount)
+                , withText("50")
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.tvCreated)
-            , withText(startsWith("Criado em "))
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.tvCreated)
+                , withText(startsWith("Criado em "))
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.tvUpdated)
-            , withText(startsWith("Atualizado em "))
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.tvUpdated)
+                , withText(startsWith("Atualizado em "))
+                , isDisplayed()
+            )
+        )
 
-        onView(allOf(withId(R.id.btOpenWeb)
-            , withText("VER NA WEB")
-            , isDisplayed()))
+        onView(
+            allOf(
+                withId(R.id.btOpenWeb)
+                , withText("VER NA WEB")
+                , isDisplayed()
+            )
+        )
     }
 
     @Test
