@@ -39,7 +39,7 @@
             tools:src="@sample/repos.json/repos/avatar" />
 
         <TextView
-            android:id="@+id/tvAutor"
+            android:id="@+id/tvAuthor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -58,9 +58,9 @@
             android:layout_marginTop="8dp"
             android:text="@{item.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintEnd_toEndOf="@+id/tvAutor"
-            app:layout_constraintStart_toStartOf="@+id/tvAutor"
-            app:layout_constraintTop_toBottomOf="@+id/tvAutor"
+            app:layout_constraintEnd_toEndOf="@+id/tvAuthor"
+            app:layout_constraintStart_toStartOf="@+id/tvAuthor"
+            app:layout_constraintTop_toBottomOf="@+id/tvAuthor"
             tools:text="@sample/repos.json/repos/repo_name" />
 
         <ImageView
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvRepoName" />
 
         <TextView
-            android:id="@+id/tvStars"
+            android:id="@+id/tvStarsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -94,11 +94,11 @@
             android:layout_marginTop="8dp"
             android:contentDescription="@string/cd_forks"
             android:src="@drawable/source_fork"
-            app:layout_constraintStart_toEndOf="@+id/tvStars"
+            app:layout_constraintStart_toEndOf="@+id/tvStarsCount"
             app:layout_constraintTop_toBottomOf="@+id/tvRepoName" />
 
         <TextView
-            android:id="@+id/tvForks"
+            android:id="@+id/tvForksCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

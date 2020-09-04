@@ -10,7 +10,7 @@ import br.com.emesistemas.topk.model.Item
 
 class RepoListAdapter(
     private val context: Context,
-    private val dataSet: MutableSet<Item> = mutableSetOf(),
+    private var dataSet: MutableSet<Item> = mutableSetOf(),
     var onClick: (item: Item) -> Unit = {}
 ) : RecyclerView.Adapter<RepoListAdapter.RepoViewHolder>() {
 
@@ -33,7 +33,7 @@ class RepoListAdapter(
     }
 
     fun submitList(items: List<Item>) {
-        dataSet.addAll(items)
+        dataSet.addAll(items.sortedByDescending { it.stargazers_count })
         notifyDataSetChanged()
     }
 

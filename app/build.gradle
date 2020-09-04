@@ -14,9 +14,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "java.util.concurrent.atomic.AtomicBoolean",
+                "IS_UI_TESTING",
+                "new java.util.concurrent.atomic.AtomicBoolean(false)"
     }
 
-    testBuildType = 'fortest'
+    //testBuildType = 'fortest'
 
     buildTypes {
         release {
@@ -26,12 +29,13 @@ android {
         debug{
            buildConfigField 'String','URLBASE','"https://api.github.com/search/"'
            buildConfigField 'String','DATABASENAME','"topk.db"'
+           buildConfigField 'String','DATABASENAME_TEST','"topk_test.db"'
         }
-        fortest{
-            initWith(buildTypes.debug)
-            buildConfigField 'String','URLBASE','"https://api.github.com/mock/"'
-            buildConfigField 'String','DATABASENAME','"topk_test.db"'
-        }
+//        fortest{
+//            initWith(buildTypes.debug)
+//            buildConfigField 'String','URLBASE','"https://api.github.com/mock/"'
+//            buildConfigField 'String','DATABASENAME','"topk_test.db"'
+//        }
     }
     compileOptions {
         targetCompatibility = "8"
@@ -83,6 +87,7 @@ dependencies {
     // Espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
+    implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"

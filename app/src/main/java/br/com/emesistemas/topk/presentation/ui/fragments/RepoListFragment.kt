@@ -22,6 +22,7 @@ import br.com.emesistemas.topk.presentation.ui.custom.PaginationListener
 import br.com.emesistemas.topk.presentation.viewmodel.RepoListViewModel
 import br.com.emesistemas.topk.presentation.viewmodel.UiComponent
 import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
+import br.com.emesistemas.topk.util.EspressoIdlingResource
 import kotlinx.android.synthetic.main.fragment_repo_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -134,10 +135,12 @@ class RepoListFragment : Fragment(), View.OnClickListener {
     }
 
     private fun showLoading() {
+        EspressoIdlingResource.increment()
         progressBar.visibility = VISIBLE
     }
 
     private fun hideLoading() {
+        EspressoIdlingResource.decrement()
         progressBar.visibility = GONE
     }
 

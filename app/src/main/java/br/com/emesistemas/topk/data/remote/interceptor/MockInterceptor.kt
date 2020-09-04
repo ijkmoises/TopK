@@ -1,24 +1,20 @@
-package br.com.emesistemas.topk.data.remote
+package br.com.emesistemas.topk.data.remote.interceptor
 
 import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.app.App
-import okhttp3.*
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.Protocol
+import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 
 class MockInterceptor : Interceptor {
-
-    @Suppress("ConstantConditionIf")
     override fun intercept(chain: Interceptor.Chain): Response {
-        if (BuildConfig.BUILD_TYPE == "fortest") {
 
-            val uri = chain.request().url.toUri().toString()
+        println("moises ramos intercept "+BuildConfig.IS_UI_TESTING.get())
 
-            val responseString = when {
-                uri.contains("mock") -> App.getMockRepos()
-                else -> ""
-            }
-
+        if (BuildConfig.IS_UI_TESTING.get()) {
+            val responseString = App.getMockRepos()
             return chain.proceed(chain.request())
                 .newBuilder()
                 .code(200)

@@ -1,17 +1,18 @@
 package br.com.emesistemas.topk.presentation.ui.fragments
 
-
+import EspressoIdlingResourceRule
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.R
-import br.com.emesistemas.topk.model.Item
-import br.com.emesistemas.topk.model.Owner
+import br.com.emesistemas.topk.mathers.ViewMatcher.matchesInPosition
 import br.com.emesistemas.topk.presentation.ui.activities.MainActivity
+import org.hamcrest.Matchers.allOf
+
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -24,40 +25,79 @@ class RepoListFragmentTest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
-    private val items: List<Item> = listOf(
-        Item(id = 100, page = 1, owner = Owner(login = "John")),
-        Item(id = 200, page = 1, owner = Owner(login = "Mark")),
-        Item(id = 300, page = 1, owner = Owner(login = "Vany")),
-        Item(id = 400, page = 2, owner = Owner(login = "Ness")),
-        Item(id = 500, page = 2, owner = Owner(login = "Ghose")),
-        Item(id = 600, page = 2, owner = Owner(login = "Bill"))
-    )
 
+    @get: Rule
+    val espressoIdlingResourceRule = EspressoIdlingResourceRule()
 
     @Before
-    fun setUp() {
+    fun setup() {
+        println("moises ramos setup ")
+        BuildConfig.IS_UI_TESTING.set(true)
 
     }
 
-    @After
+
     fun tearDown() {
-        InstrumentationRegistry.getInstrumentation().targetContext.deleteDatabase("topk_test.db")
+        println("moises ramos tearDown ")
+        BuildConfig.IS_UI_TESTING.set(false)
+        InstrumentationRegistry.getInstrumentation()
+            .targetContext.deleteDatabase(BuildConfig.DATABASENAME_TEST)
     }
 
     @Test
-    fun a_test_isListFragmentVisible_onAppLaunch() {
-
-        //val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
-        //scenario = launchActivity(intent)
-
+    fun test_isRecyclerViewVisible_onAppLaunch() {
+        println("moises ramos teste frag "+BuildConfig.IS_UI_TESTING.get())
         onView(withId(R.id.rvRepoList))
             .check(matches(isDisplayed()))
-
-        Thread.sleep(2000)
-
-        //Clica no item
-//        onView(withId(R.id.rvRepoList))
-//            .perform(RecyclerViewActions
-//                .actionOnItemAtPosition<RepoListAdapter.RepoViewHolder>(0, ))
     }
+
+    @Test
+    fun test_RecyclerViewHasThreeItemsVisibles_With_AuthorName_And_RepoName_And_Forks_And_Stars() {
+        onView(withId(R.id.rvRepoList))
+            .check(
+                matches(
+                    matchesInPosition(
+                        position = 0,
+                        verifyAuthorName = "google",
+                        verifyForksCount = 6098,
+                        verifyRepoName = "iosched",
+                        verifyStarsCount = 20098
+                    )
+                )
+            )
+
+        onView(withId(R.id.rvRepoList))
+            .check(
+                matches(
+                    matchesInPosition(
+                        position = 1,
+                        verifyAuthorName = "android",
+                        verifyForksCount = 6270,
+                        verifyRepoName = "architecture-components-samples",
+                        verifyStarsCount = 18171
+                    )
+                )
+            )
+
+        onView(withId(R.id.rvRepoList))
+            .check(
+                matches(
+                    matchesInPosition(
+                        position = 2,
+                        verifyAuthorName = "afollestad",
+                        verifyForksCount = 3042,
+                        verifyRepoName = "material-dialogs",
+                        verifyStarsCount = 18071
+                    )
+                )
+            )
+    }
+
+    @Test
+    fun test_ToolbarTitle_Text() {
+        onView(allOf(withId(R.id.toolbar)
+            , withText("Top repositórios Kotlin")
+            , isDisplayed()))
+    }
+
 }
