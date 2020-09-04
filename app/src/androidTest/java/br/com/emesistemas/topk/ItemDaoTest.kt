@@ -8,7 +8,6 @@ import br.com.emesistemas.topk.data.local.AppDatabase
 import br.com.emesistemas.topk.data.local.ItemDao
 import br.com.emesistemas.topk.model.Item
 import br.com.emesistemas.topk.model.Owner
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
@@ -16,7 +15,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)

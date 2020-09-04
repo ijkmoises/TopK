@@ -1,5 +1,6 @@
+package br.com.emesistemas.topk.util
+
 import androidx.test.espresso.IdlingRegistry
-import br.com.emesistemas.topk.util.EspressoIdlingResource
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 

@@ -40,7 +40,7 @@ object ViewMatcher {
                 val viewHolder = item?.findViewHolderForAdapterPosition(position)
 
                 if (viewHolder == null) {
-                    IndexOutOfBoundsException("View do ViewHolder na posição $position não foi encontrada");
+                    IndexOutOfBoundsException("View do ViewHolder na posição $position não foi encontrada")
                 }
 
                 val itemView = viewHolder?.itemView
