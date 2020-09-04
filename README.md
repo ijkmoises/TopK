@@ -6,12 +6,12 @@
     Lista de repositórios com mais estrelas em Kotlin
 </h2>
 
-## Screenshots
-
 <p align="center">
   <img src="screenshots/frag_repo_list.png" width="270" alt="Lista de repositórios">
   <img src="screenshots/frag_repo_detail.png" width="270" alt="Detalhe de um repositório">
 </p>
+
+<p>&nbsp;&nbsp;&nbsp;</p>
 
 <p align="center">
   <img src="screenshots/frag_repo_list_land.png" height="270" alt="Lista do filme - retrato">
