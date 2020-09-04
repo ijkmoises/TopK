@@ -22,7 +22,6 @@ class UiStateViewModel : ViewModel(){
 }
 
 class UiComponent(
-    val appBar:Boolean = true,
-    val homeAsUpButton :Boolean = false,
-    val titleToolbar : Boolean = false
+    val homeAsUpButton: Boolean = false,
+    val titleToolbar: Boolean = false
 )

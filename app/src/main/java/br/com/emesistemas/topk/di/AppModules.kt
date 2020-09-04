@@ -16,16 +16,12 @@ import br.com.emesistemas.topk.presentation.ui.fragments.RepoListFragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-private val dbName = if (BuildConfig.IS_UI_TESTING.get())
-                            BuildConfig.DATABASENAME_TEST
-                                else BuildConfig.DATABASENAME
-
 val databaseModule = module {
     single<AppDatabase> {
         Room.databaseBuilder(
             get(),
             AppDatabase::class.java,
-            dbName
+            BuildConfig.DATABASENAME
             ).build()
     }
 }

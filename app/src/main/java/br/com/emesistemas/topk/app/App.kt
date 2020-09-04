@@ -1,7 +1,9 @@
 package br.com.emesistemas.topk.app
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import br.com.emesistemas.topk.di.*
 import com.bumptech.glide.Glide
 import org.koin.android.ext.koin.androidContext
@@ -10,6 +12,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 
+@SuppressLint("StaticFieldLeak")
 class App : Application() {
 
     override fun onCreate() {
@@ -40,6 +43,8 @@ class App : Application() {
         Glide.get(this).clearMemory()
     }
 
+
+    @VisibleForTesting
     companion object {
 
         private lateinit var context: Context

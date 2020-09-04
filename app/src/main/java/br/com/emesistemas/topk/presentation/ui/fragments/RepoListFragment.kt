@@ -34,7 +34,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
 
     private val uiStateViewModel: UiStateViewModel by sharedViewModel()
     private val viewModel by viewModel<RepoListViewModel>()
-    val adapter: RepoListAdapter by inject()
+    private val adapter: RepoListAdapter by inject()
     private val navController by lazy {
         findNavController()
     }

@@ -1,5 +1,6 @@
 package br.com.emesistemas.topk.data.remote.interceptor
 
+import android.annotation.SuppressLint
 import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.app.App
 import okhttp3.Interceptor
@@ -8,10 +9,11 @@ import okhttp3.Protocol
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 
-class MockInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
 
-        println("moises ramos intercept "+BuildConfig.IS_UI_TESTING.get())
+class MockInterceptor : Interceptor {
+
+    @SuppressLint("VisibleForTests")
+    override fun intercept(chain: Interceptor.Chain): Response {
 
         if (BuildConfig.IS_UI_TESTING.get()) {
             val responseString = App.getMockRepos()

@@ -4,7 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 
-class SearchRepoParamsInterceptor() : Interceptor {
+class SearchRepoParamsInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val original: Request = chain.request()

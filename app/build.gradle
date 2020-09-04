@@ -19,8 +19,6 @@ android {
                 "new java.util.concurrent.atomic.AtomicBoolean(false)"
     }
 
-    //testBuildType = 'fortest'
-
     buildTypes {
         release {
             minifyEnabled false
@@ -29,14 +27,9 @@ android {
         debug{
            buildConfigField 'String','URLBASE','"https://api.github.com/search/"'
            buildConfigField 'String','DATABASENAME','"topk.db"'
-           buildConfigField 'String','DATABASENAME_TEST','"topk_test.db"'
         }
-//        fortest{
-//            initWith(buildTypes.debug)
-//            buildConfigField 'String','URLBASE','"https://api.github.com/mock/"'
-//            buildConfigField 'String','DATABASENAME','"topk_test.db"'
-//        }
     }
+
     compileOptions {
         targetCompatibility = "8"
         sourceCompatibility = "8"
@@ -58,6 +51,7 @@ dependencies {
     def coroutines_version = "1.3.9"
     def okhttp3_version = "4.8.1"
     def glide_version = "4.11.0"
+    def espresso_Version = "3.3.0"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -85,9 +79,9 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.3.0'
 
     // Espresso
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
-    implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espresso_Version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_Version"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_Version"
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"
@@ -96,6 +90,7 @@ dependencies {
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -120,14 +115,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7'
 
-    // Lifecycle
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-
     // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     // hdodenhof circleimageview
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-
 }
