@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.presentation.viewmodel.UiStateViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,7 +15,9 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: UiStateViewModel by viewModel()
 
     private val navController by lazy {
-        findNavController(R.id.main_activity_nav_host)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.main_activity_nav_host) as NavHostFragment
+        navHostFragment.navController
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
