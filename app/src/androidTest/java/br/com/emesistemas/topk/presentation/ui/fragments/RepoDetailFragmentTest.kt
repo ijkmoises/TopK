@@ -8,11 +8,10 @@ import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.presentation.ui.activities.MainActivity
 import br.com.emesistemas.topk.presentation.ui.adapters.RepoListAdapter
+import br.com.emesistemas.topk.util.BaseUiTest
 import br.com.emesistemas.topk.util.EspressoIdlingResourceRule
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.startsWith
@@ -22,7 +21,7 @@ import org.junit.runners.MethodSorters
 
 @RunWith(AndroidJUnit4::class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-class RepoDetailFragmentTest {
+class RepoDetailFragmentTest : BaseUiTest() {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
@@ -33,18 +32,13 @@ class RepoDetailFragmentTest {
     @Before
     fun setup() {
         clearDatabase()
-        BuildConfig.IS_UI_TESTING.set(true)
+        setFlagIsUiTestingRunning(true)
     }
 
     @After
     fun tearDown() {
         clearDatabase()
-        BuildConfig.IS_UI_TESTING.set(false)
-    }
-
-    private fun clearDatabase() {
-        InstrumentationRegistry.getInstrumentation()
-            .targetContext.deleteDatabase(BuildConfig.DATABASENAME)
+        setFlagIsUiTestingRunning(false)
     }
 
     @Test
@@ -53,8 +47,10 @@ class RepoDetailFragmentTest {
         onView(withId(R.id.rvRepoList)).check(matches(isDisplayed()))
 
         onView(withId(R.id.rvRepoList))
-            .perform(RecyclerViewActions.scrollToPosition<RepoListAdapter.RepoViewHolder>(0)
-                ,actionOnItemAtPosition<RepoListAdapter.RepoViewHolder>(0, click()))
+            .perform(
+                RecyclerViewActions.scrollToPosition<RepoListAdapter.RepoViewHolder>(0)
+                , actionOnItemAtPosition<RepoListAdapter.RepoViewHolder>(0, click())
+            )
 
         onView(withId(R.id.ivBackAvatar))
             .check(matches(isDisplayed()))

@@ -70,9 +70,7 @@
 
 Este projeto foi desenvolvido usando Android Studio 4.0.1.
 
-<p>
-    Testes de instrumentação
-</p>
+- <p>Testes de instrumentação</p>
 
 Para evitar instabilidades, é altamente recomendável que você desative as animações do sistema nos 
 dispositivos virtuais ou físicos usados para testes.
@@ -83,9 +81,7 @@ No dispositivo, em Config. > Opções do desenvolvedor, desative estas três con
 -Escala de duração do Animator
 
 
-<p>
-    Testes de unidade
-</p>
+- <p>Testes de unidade</p>
 
 Para executar os testes unitários utilize:
 

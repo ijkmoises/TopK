@@ -1,29 +1,24 @@
 package br.com.emesistemas.topk.presentation.ui.fragments
 
-import br.com.emesistemas.topk.util.EspressoIdlingResourceRule
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import br.com.emesistemas.topk.BuildConfig
 import br.com.emesistemas.topk.R
 import br.com.emesistemas.topk.mathers.ViewMatcher.matchesInPosition
 import br.com.emesistemas.topk.presentation.ui.activities.MainActivity
-import br.com.emesistemas.topk.presentation.ui.adapters.RepoListAdapter
+import br.com.emesistemas.topk.util.BaseUiTest
+import br.com.emesistemas.topk.util.EspressoIdlingResourceRule
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RepoListFragmentTest {
+class RepoListFragmentTest : BaseUiTest() {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
@@ -34,17 +29,13 @@ class RepoListFragmentTest {
     @Before
     fun setup() {
         clearDatabase()
-        BuildConfig.IS_UI_TESTING.set(true)
+        setFlagIsUiTestingRunning(true)
     }
 
+    //@After
     fun tearDown() {
-        clearDatabase()
-        BuildConfig.IS_UI_TESTING.set(false)
-    }
-
-    private fun clearDatabase(){
-        InstrumentationRegistry.getInstrumentation()
-            .targetContext.deleteDatabase(BuildConfig.DATABASENAME)
+        //clearDatabase()
+        setFlagIsUiTestingRunning(false)
     }
 
     @Test
