@@ -1,11 +1,9 @@
-package br.com.emesistemas.topk
+package br.com.emesistemas.topk.data.local
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import br.com.emesistemas.topk.data.local.AppDatabase
-import br.com.emesistemas.topk.data.local.ItemDao
 import br.com.emesistemas.topk.model.Item
 import br.com.emesistemas.topk.model.Owner
 import kotlinx.coroutines.runBlocking
