@@ -13,9 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.emesistemas.topk.R
+import br.com.emesistemas.topk.data.remote.Resource
 import br.com.emesistemas.topk.data.remote.Status
 import br.com.emesistemas.topk.databinding.FragmentRepoListBinding
 import br.com.emesistemas.topk.model.Item
+import br.com.emesistemas.topk.model.Repo
 import br.com.emesistemas.topk.presentation.ui.adapters.RepoListAdapter
 import br.com.emesistemas.topk.presentation.ui.custom.CustomDividerItemDecoration
 import br.com.emesistemas.topk.presentation.ui.custom.PaginationListener
@@ -30,20 +32,21 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepoListFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var linearLayoutManager: LinearLayoutManager
-
     private val uiStateViewModel: UiStateViewModel by sharedViewModel()
     private val viewModel by viewModel<RepoListViewModel>()
     private val adapter: RepoListAdapter by inject()
+
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var viewBinding: FragmentRepoListBinding
+    private lateinit var viewInflated: View
+
     private val navController by lazy {
         findNavController()
     }
 
-    private lateinit var viewBinding: FragmentRepoListBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter.onClick = { item -> openDetail(item) }
+        adapter.onItemClick = { item -> openRepoDetail(item) }
     }
 
     override fun onCreateView(
@@ -51,25 +54,34 @@ class RepoListFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fetchRepoKotlinList()
         viewBinding = FragmentRepoListBinding.inflate(
             inflater,
             container,
             false
         )
-        viewBinding.containerListMessage.fetchRepo = this
-        return viewBinding.root
+        if (fragmentIsNotInitialized()) {
+            setupRootView()
+            fetchRepoKotlinList()
+        }
+        return viewInflated
+    }
+
+    private fun fragmentIsNotInitialized() = !::viewInflated.isInitialized
+
+    private fun setupRootView() {
+        viewInflated = viewBinding.root
+        viewBinding.containerAdapterEmpty.tryFetchRepoClickListener = this
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         uiStateViewModel.hasComponent =
-            UiComponent(
-                homeAsUpButton = false,
-                titleToolbar = true
-            )
-        configureRecyclerView()
-        configureRecyclerViewPagingListener()
+            UiComponent(homeAsUpButton = false, titleToolbar = true)
+
+        if (adapter.isEmpty()) {
+            configureRecyclerView()
+            configureRecyclerViewPagingListener()
+        }
     }
 
     private fun configureRecyclerView() {
@@ -100,37 +112,47 @@ class RepoListFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun fetchRepoKotlinList() {
+    private fun fetchRepoKotlinList() {
         viewModel.fetchListResult().observe(viewLifecycleOwner, Observer { resource ->
             when (resource.status) {
-                Status.SUCCESS -> {
-                    hideLoading()
-                    resource.data?.let { repo ->
-                        adapter.submitList(repo.items)
-                    }
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    if (adapter.isEmpty()) {
-                        showNoRepoToDisplay()
-                    }
-                    showError(resource.message)
-                }
-                Status.LOADING -> {
-                    hideNoRepoToDisplay()
-                    showLoading()
-                }
+                Status.SUCCESS -> gotSuccess(resource)
+                Status.ERROR -> gotError(resource)
+                Status.LOADING -> gotLoading()
             }
         })
     }
 
-    private fun showNoRepoToDisplay() {
-        rvRepoList.visibility = GONE
-        viewBinding.containerListMessage.root.visibility = VISIBLE
+    private fun gotLoading() {
+        avoidEmptyAdapterView()
+        showLoading()
     }
 
-    private fun hideNoRepoToDisplay() {
-        viewBinding.containerListMessage.root.visibility = GONE
+    private fun gotError(resource: Resource<Repo>) {
+        hideLoading()
+        if (adapter.isEmpty()) {
+            avoidRecyclerView()
+        }
+        showError(resource.message)
+    }
+
+    private fun gotSuccess(resource: Resource<Repo>) {
+        hideLoading()
+        resource.data?.let { repo ->
+            adapter.submitList(repo.items)
+        }
+    }
+
+    private fun avoidRecyclerView() {
+        rvRepoList.visibility = GONE
+
+        viewBinding.containerAdapterEmpty
+            .root.visibility = VISIBLE
+    }
+
+    private fun avoidEmptyAdapterView() {
+        viewBinding.containerAdapterEmpty
+            .root.visibility = GONE
+
         rvRepoList.visibility = VISIBLE
     }
 
@@ -153,7 +175,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun openDetail(item: Item) {
+    private fun openRepoDetail(item: Item) {
         val direction = RepoListFragmentDirections
             .actionRepositoryListToRepositoryDetail(repoItem = item)
         navController.navigate(direction)

@@ -8,7 +8,7 @@
 
         <include
             android:visibility="gone"
-            android:id="@+id/container_list_message"
+            android:id="@+id/container_adapter_empty"
             layout="@layout/inlcude_no_repo_to_display"/>
 
         <androidx.recyclerview.widget.RecyclerView

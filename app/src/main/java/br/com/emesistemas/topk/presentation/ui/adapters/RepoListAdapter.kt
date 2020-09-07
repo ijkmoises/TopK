@@ -11,7 +11,7 @@ import br.com.emesistemas.topk.model.Item
 class RepoListAdapter(
     private val context: Context,
     private var dataSet: MutableSet<Item> = mutableSetOf(),
-    var onClick: (item: Item) -> Unit = {}
+    var onItemClick: (item: Item) -> Unit = {}
 ) : RecyclerView.Adapter<RepoListAdapter.RepoViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -57,7 +57,7 @@ class RepoListAdapter(
 
         override fun onClick(v: View?) {
             if (::item.isInitialized) {
-                onClick(item)
+                onItemClick(item)
             }
         }
     }

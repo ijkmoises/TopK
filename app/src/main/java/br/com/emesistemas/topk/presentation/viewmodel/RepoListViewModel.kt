@@ -21,7 +21,6 @@ class RepoListViewModel(private val repository: RepoRepository) : ViewModel() {
         return isLoading
     }
 
-
     fun fetchListResult() = liveData(Dispatchers.IO) {
 
         if (hasNext()) {

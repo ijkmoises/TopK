@@ -40,6 +40,7 @@ class RepoListFragmentTest : BaseUiTest() {
 
     @Test
     fun recyclerViewHasThreeItemsVisibles_With_AuthorName_And_RepoName_And_Forks_And_Stars() {
+
         onView(withId(R.id.rvRepoList))
             .check(
                 matches(
