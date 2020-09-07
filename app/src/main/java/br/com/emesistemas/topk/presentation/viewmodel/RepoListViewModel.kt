@@ -21,10 +21,14 @@ class RepoListViewModel(private val repository: RepoRepository) : ViewModel() {
         return isLoading
     }
 
+    fun onItemsVisibleInRecyclerView(){
+        currentPage++
+    }
+
     fun fetchListResult() = liveData(Dispatchers.IO) {
 
         if (hasNext()) {
-            currentPage++
+
             isLoading = true
 
             emit(repository.fetchCached(page = currentPage))

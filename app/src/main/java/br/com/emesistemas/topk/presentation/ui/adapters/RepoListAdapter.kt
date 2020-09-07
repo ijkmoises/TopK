@@ -32,6 +32,10 @@ class RepoListAdapter(
         return dataSet.isEmpty()
     }
 
+    fun isNotEmpty(): Boolean {
+        return dataSet.isNotEmpty()
+    }
+
     fun submitList(items: List<Item>) {
         dataSet.addAll(items.sortedByDescending { it.stargazers_count })
         notifyDataSetChanged()

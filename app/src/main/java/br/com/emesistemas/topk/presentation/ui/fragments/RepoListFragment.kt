@@ -34,7 +34,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
 
     private val uiStateViewModel: UiStateViewModel by sharedViewModel()
     private val viewModel by viewModel<RepoListViewModel>()
-    private val adapter: RepoListAdapter by inject()
+    private val recyclerViewAdapter: RepoListAdapter by inject()
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var viewBinding: FragmentRepoListBinding
@@ -46,7 +46,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter.onItemClick = { item -> openRepoDetail(item) }
+        recyclerViewAdapter.onItemClick = { item -> openRepoDetail(item) }
     }
 
     override fun onCreateView(
@@ -78,7 +78,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
         uiStateViewModel.hasComponent =
             UiComponent(homeAsUpButton = false, titleToolbar = true)
 
-        if (adapter.isEmpty()) {
+        if (recyclerViewAdapter.isEmpty()) {
             configureRecyclerView()
             configureRecyclerViewPagingListener()
         }
@@ -93,7 +93,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
         rvRepoList.layoutManager = linearLayoutManager
         rvRepoList.itemAnimator = DefaultItemAnimator()
         rvRepoList.addItemDecoration(CustomDividerItemDecoration(context, R.drawable.divider))
-        rvRepoList.adapter = adapter
+        rvRepoList.adapter = recyclerViewAdapter
     }
 
     private fun configureRecyclerViewPagingListener() {
@@ -123,13 +123,13 @@ class RepoListFragment : Fragment(), View.OnClickListener {
     }
 
     private fun gotLoading() {
-        avoidEmptyAdapterView()
+        allowRecyclerView()
         showLoading()
     }
 
     private fun gotError(resource: Resource<Repo>) {
         hideLoading()
-        if (adapter.isEmpty()) {
+        if (recyclerViewAdapter.isEmpty()) {
             avoidRecyclerView()
         }
         showError(resource.message)
@@ -138,7 +138,10 @@ class RepoListFragment : Fragment(), View.OnClickListener {
     private fun gotSuccess(resource: Resource<Repo>) {
         hideLoading()
         resource.data?.let { repo ->
-            adapter.submitList(repo.items)
+            recyclerViewAdapter.submitList(repo.items)
+            if(recyclerViewAdapter.isNotEmpty()){
+                viewModel.onItemsVisibleInRecyclerView()
+            }
         }
     }
 
@@ -149,7 +152,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
             .root.visibility = VISIBLE
     }
 
-    private fun avoidEmptyAdapterView() {
+    private fun allowRecyclerView() {
         viewBinding.containerAdapterEmpty
             .root.visibility = GONE
 
