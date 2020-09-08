@@ -4,42 +4,59 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import br.com.emesistemas.topk.data.local.RepoRepository
 import br.com.emesistemas.topk.data.remote.Resource
+import br.com.emesistemas.topk.model.Repo
 import kotlinx.coroutines.Dispatchers
 
 class RepoListViewModel(private val repository: RepoRepository) : ViewModel() {
 
     private var totalPage = 1000
-    private var currentPage = 0
+    private var currentPage = 1
     private var isLastPage = false
-    private var isLoading = false
+    private var isLoadingPage = false
 
     fun isLastPage(): Boolean {
         return isLastPage
     }
 
-    fun isLoading(): Boolean {
-        return isLoading
-    }
-
-    fun onItemsVisibleInRecyclerView(){
-        currentPage++
+    fun isLoadingPage(): Boolean {
+        return isLoadingPage
     }
 
     fun fetchListResult() = liveData(Dispatchers.IO) {
-
         if (hasNext()) {
+            isLoadingPage = true
 
-            isLoading = true
-
-            emit(repository.fetchCached(page = currentPage))
+            val fromCacheResource = repository.fetchCached(page = currentPage)
+            emit(fromCacheResource)
 
             emit(Resource.loading())
+            val fromApiResource = repository.fetchRemote(page = currentPage)
+            emit(fromApiResource)
 
-            emit(repository.fetchRemote(page = currentPage))
+            incrementPageCount(fromCacheResource, fromApiResource)
 
-            isLoading = false
+            isLoadingPage = false
         } else {
             isLastPage = true
+        }
+    }
+
+    @Suppress("SENSELESS_COMPARISON")
+    private fun incrementPageCount(
+        fromCacheResource: Resource<Repo>,
+        fromApiResource: Resource<Repo>
+    ) {
+        //Avoid null pointer exception when test this ViewModel
+        if (fromCacheResource == null || fromApiResource == null) {
+            return
+        }
+
+        if ((fromCacheResource.data != null
+                    && fromCacheResource.data.items.isNotEmpty())
+            || (fromApiResource.data != null
+                    && fromApiResource.data.items.isNotEmpty())
+        ) {
+            currentPage++
         }
     }
 

@@ -107,7 +107,7 @@ class RepoListFragment : Fragment(), View.OnClickListener {
             }
 
             override fun isLoading(): Boolean {
-                return viewModel.isLoading()
+                return viewModel.isLoadingPage()
             }
         })
     }
@@ -139,9 +139,6 @@ class RepoListFragment : Fragment(), View.OnClickListener {
         hideLoading()
         resource.data?.let { repo ->
             recyclerViewAdapter.submitList(repo.items)
-            if(recyclerViewAdapter.isNotEmpty()){
-                viewModel.onItemsVisibleInRecyclerView()
-            }
         }
     }
 
