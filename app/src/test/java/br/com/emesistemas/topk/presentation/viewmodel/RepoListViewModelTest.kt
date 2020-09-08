@@ -8,7 +8,10 @@ import br.com.emesistemas.topk.data.remote.Resource
 import br.com.emesistemas.topk.data.remote.Status
 import br.com.emesistemas.topk.model.Item
 import br.com.emesistemas.topk.model.Repo
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.timeout
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -18,7 +21,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import java.lang.Exception
 
 @RunWith(JUnit4::class)
 class RepoListViewModelTest {

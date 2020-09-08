@@ -14,9 +14,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
         buildConfigField "java.util.concurrent.atomic.AtomicBoolean",
-                "IS_UI_TESTING",
+                "IS_TESTING_MOCK_API_RESPONSE_OK",
                 "new java.util.concurrent.atomic.AtomicBoolean(false)"
+
+        buildConfigField "java.util.concurrent.atomic.AtomicBoolean",
+        "IS_TESTING_MOCK_API_RESPONSE_ERROR",
+        "new java.util.concurrent.atomic.AtomicBoolean(false)"
     }
 
     buildTypes {

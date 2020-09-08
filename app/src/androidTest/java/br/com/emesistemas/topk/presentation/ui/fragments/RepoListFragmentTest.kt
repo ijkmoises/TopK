@@ -13,11 +13,14 @@ import br.com.emesistemas.topk.util.EspressoIdlingResourceRule
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 import org.junit.Before
+import org.junit.FixMethodOrder
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.MethodSorters
 
 @RunWith(AndroidJUnit4::class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class RepoListFragmentTest : BaseUiTest() {
 
     @get:Rule
@@ -29,7 +32,7 @@ class RepoListFragmentTest : BaseUiTest() {
     @Before
     fun setup() {
         clearDatabase()
-        setFlagIsUiTestingRunning(true)
+        setFlagIsTestingMockApiResponseOK(true)
     }
 
     @Test

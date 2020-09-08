@@ -15,21 +15,30 @@ class MockInterceptor : Interceptor {
     @SuppressLint("VisibleForTests")
     override fun intercept(chain: Interceptor.Chain): Response {
 
-        if (BuildConfig.IS_UI_TESTING.get()) {
-            val responseString = App.getMockRepos()
-            return chain.proceed(chain.request())
-                .newBuilder()
-                .code(200)
-                .protocol(Protocol.HTTP_2)
-                .message(responseString)
-                .body(
-                    responseString.toByteArray()
-                        .toResponseBody("application/json".toMediaTypeOrNull())
-                )
-                .addHeader("content-type", "application/json")
-                .build()
-        } else {
-            return chain.proceed(chain.request())
+        val response = chain.proceed(chain.request())
+            .newBuilder()
+            .protocol(Protocol.HTTP_2)
+            .addHeader("content-type", "application/json")
+
+        when {
+            BuildConfig.IS_TESTING_MOCK_API_RESPONSE_OK.get() -> {
+                val responseString = App.getMockRepos()
+                return response
+                    .code(200)
+                    .message(responseString)
+                    .body(
+                        responseString.toByteArray()
+                            .toResponseBody("application/json".toMediaTypeOrNull())
+                    ).build()
+            }
+            BuildConfig.IS_TESTING_MOCK_API_RESPONSE_ERROR.get() -> {
+                return response.code(500)
+                    .build()
+            }
+            else -> {
+                response.build().close()
+                return chain.proceed(chain.request())
+            }
         }
     }
 }

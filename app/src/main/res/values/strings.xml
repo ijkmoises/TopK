@@ -6,7 +6,7 @@
     <string name="internal_server_error">Erro interno no servidor</string>
     <string name="service_unavailable">Serviço indisponivel</string>
     <string name="unexpected_error">Erro inesperado</string>
-    <string name="internet_offline">Sem conexao com a internet</string>
+    <string name="internet_offline">Sem conexão com a internet</string>
     <string name="rate_limit_exceeded">Exedido limite de requisiçoes por minuto</string>
     <string name="btOpenBrowser">VER NA WEB</string>
     <string name="createdAt">Criado em %1$s</string>

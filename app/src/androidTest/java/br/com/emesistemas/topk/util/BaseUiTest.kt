@@ -9,7 +9,14 @@ abstract class BaseUiTest {
             .targetContext.deleteDatabase(BuildConfig.DATABASENAME)
     }
 
-    fun setFlagIsUiTestingRunning(isRunning: Boolean) {
-        BuildConfig.IS_UI_TESTING.set(isRunning)
+    fun setFlagIsTestingMockApiResponseOK(isRunning: Boolean) {
+        BuildConfig.IS_TESTING_MOCK_API_RESPONSE_OK.set(isRunning)
+        BuildConfig.IS_TESTING_MOCK_API_RESPONSE_ERROR.set(!isRunning)
     }
+
+    fun setFlagIsTestingMockApiResponseERROR(isRunning: Boolean) {
+        BuildConfig.IS_TESTING_MOCK_API_RESPONSE_OK.set(!isRunning)
+        BuildConfig.IS_TESTING_MOCK_API_RESPONSE_ERROR.set(isRunning)
+    }
+
 }

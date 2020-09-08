@@ -32,7 +32,7 @@ class RepoDetailFragmentTest : BaseUiTest() {
     @Before
     fun setup() {
         clearDatabase()
-        setFlagIsUiTestingRunning(true)
+        setFlagIsTestingMockApiResponseOK(true)
     }
 
     @Test
