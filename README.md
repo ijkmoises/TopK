@@ -3,7 +3,7 @@
 </h1>
 
 <h2 align="center">
-    Lista de repositórios com mais estrelas em Kotlin
+    Lista de repositórios Kotlin com mais estrelas
 </h2>
 
 <p align="center">
